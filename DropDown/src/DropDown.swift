@@ -77,6 +77,7 @@ public final class DropDown: UIView {
 
 	/// The current visible drop down. There can be only one visible drop down at a time.
 	public static weak var VisibleDropDown: DropDown?
+    public var header:UIView? = nil
 
 	//MARK: UI
 	fileprivate let dismissableView = UIView()
@@ -1044,6 +1045,16 @@ extension DropDown {
 
 extension DropDown: UITableViewDataSource, UITableViewDelegate {
 
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        return header
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return header != nil ? 50 : 0
+    }
+    
 	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return dataSource.count
 	}
